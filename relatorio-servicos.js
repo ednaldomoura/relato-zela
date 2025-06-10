@@ -72,6 +72,12 @@ function salvarRelatorioNaTela(e) {
   document.getElementById('obs').value = '';
 }
 
+function formatarDataBR(dataISO) {
+  if (!dataISO) return '';
+  const [ano, mes, dia] = dataISO.split('-');
+  return `${dia}/${mes}/${ano}`;
+}
+
 function mostrarRelatoriosNaTela(relatorios) {
   const container = document.getElementById('relatorios-salvos');
   if (!container) return;
@@ -86,8 +92,8 @@ function mostrarRelatoriosNaTela(relatorios) {
       <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-4">
         <p class="text-gray-700"><span class="font-semibold">Serviço:</span> ${dados.servico}</p>
         <p class="text-gray-700"><span class="font-semibold">Executado por:</span> ${dados.executado}</p>
-        <p class="text-gray-700"><span class="font-semibold">Data de Início:</span> ${dados.dataInicio || ''}</p>
-        <p class="text-gray-700"><span class="font-semibold">Data da Finalização:</span> ${dados.dataFinalizado || ''}</p>
+        <p class="text-gray-700"><span class="font-semibold">Data de Início:</span> ${formatarDataBR(dados.dataInicio) || ''}</p>
+        <p class="text-gray-700"><span class="font-semibold">Data da Finalização:</span> ${formatarDataBR(dados.dataFinalizado) || ''}</p>
         <p class="text-gray-700"><span class="font-semibold">Observações:</span> ${dados.obs}</p>
         <div class="flex gap-2 mt-2">
           <button type="button" onclick="editarRelatorio(${idx})" class="bg-blue-500 text-white font-bold py-1 px-4 rounded hover:bg-blue-600 transition">Editar</button>
